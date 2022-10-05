@@ -11,21 +11,47 @@ public class PlayerController : MonoBehaviour
     // Bool: true, false
     // Vector3: {-4.2f, 24f, 100,2f}, {0,0,0}
 
+    public float movementSpeed;
+    public float jumpForce;
+    public int score;
+
     Rigidbody myRigidBody; // Degisken tanımlama
     
     void Start()
     {
+        score = 0;
         myRigidBody = GetComponent<Rigidbody>(); // Atama ve component bulma
     }
 
     // Her Frame'de çalışır
     void Update()
     {
-        float horizontalMovement = Input.GetAxis("Horizontal"); // Degisken tanımlama ve atama
-        float verticalMovement = Input.GetAxis("Vertical");
+        float horizontalMovement = Input.GetAxis("Horizontal") * movementSpeed; // Degisken tanımlama ve atama
+        float verticalMovement = Input.GetAxis("Vertical") * movementSpeed;
         
-        transform.Translate(horizontalMovement, 0, verticalMovement);
-        //myRigidBody.AddForce(1,0,0);
-            //new Vector3(horizontalMovement, myRigidBody.velocity.y, verticalMovement); // Topun hızını atama
+        myRigidBody.AddForce(horizontalMovement, 0, verticalMovement, ForceMode.Acceleration); // Hareket etmesi
+
+        if (Input.GetKeyDown(KeyCode.Space)) // Ziplamasi
+        {
+            myRigidBody.AddForce(0, jumpForce, 0, ForceMode.Impulse);
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Hazard"))
+        {
+            GameObject.Destroy(this.gameObject);
+            Debug.Log("GAME OVER");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Score"))
+        {
+            GameObject.Destroy(other.gameObject);
+            score = score + 1;
+        }
     }
 }
