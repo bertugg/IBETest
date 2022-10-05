@@ -24,8 +24,7 @@ public class PlayerController : MonoBehaviour
         float horizontalMovement = Input.GetAxis("Horizontal"); // Degisken tanımlama ve atama
         float verticalMovement = Input.GetAxis("Vertical");
         
-        //transform.Translate(horizontalMovement, 0, verticalMovement);
-        myRigidBody.velocity = new Vector3(1,0,0);
+        transform.Translate(horizontalMovement, 0, verticalMovement);
         //myRigidBody.AddForce(1,0,0);
             //new Vector3(horizontalMovement, myRigidBody.velocity.y, verticalMovement); // Topun hızını atama
     }
