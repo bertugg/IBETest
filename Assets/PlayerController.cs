@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
         float horizontalMovement = Input.GetAxis("Horizontal") * movementSpeed; // Degisken tanımlama ve atama
         float verticalMovement = Input.GetAxis("Vertical") * movementSpeed;
         
-        myRigidBody.AddForce(horizontalMovement, 0, verticalMovement, ForceMode.Acceleration); // Hareket etmesi
+        myRigidBody.velocity = new Vector3(horizontalMovement, myRigidBody.velocity.y, verticalMovement); // Hareket etmesi
 
         if (Input.GetKeyDown(KeyCode.Space)) // Ziplamasi
         {
