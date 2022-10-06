@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -43,6 +44,8 @@ public class PlayerController : MonoBehaviour
         {
             GameObject.Destroy(this.gameObject);
             Debug.Log("GAME OVER");
+            
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Restart Scene Code
         }
     }
 

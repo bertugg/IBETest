@@ -7,6 +7,7 @@ TagManager:
   - Level
   - Score
   - Hazard
+  - Key
   layers:
   - Default
   - TransparentFX
