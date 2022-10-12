@@ -47,6 +47,18 @@ public class PlayerController : MonoBehaviour
             
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Restart Scene Code
         }
+        else if (other.gameObject.CompareTag("Platform"))
+        {
+            transform.SetParent(other.transform);
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Platform"))
+        {
+            transform.SetParent(null);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
