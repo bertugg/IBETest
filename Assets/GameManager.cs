@@ -27,9 +27,7 @@ public class GameManager : MonoBehaviour
     {
         if (CubeCount >= CubeProducerPrice)
         {
-            CubeProducerAmount++;
-            cubeProducerAmountText.text = "Producer Count: " + CubeProducerAmount;
-            
+            SetBasicCubeProducerAmount(CubeProducerAmount + 1);
             IncreaseCubeCount(-CubeProducerPrice);
         }
     }
@@ -43,5 +41,11 @@ public class GameManager : MonoBehaviour
             passedProduceTime = 0;
             IncreaseCubeCount(CubeProducerAmount);
         }
+    }
+
+    public void SetBasicCubeProducerAmount(int amount)
+    {
+        CubeProducerAmount = amount;
+        cubeProducerAmountText.text = "Producer Count: " + CubeProducerAmount;
     }
 }
